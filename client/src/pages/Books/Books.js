@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ListItem from './../../components/List/ListItem.js';
+import DeleteBtn from './../../components/DeleteBtn/DeleteBtn.js';
 import API from './../../utils/API';
 
 class Books extends Component {
@@ -6,6 +8,7 @@ class Books extends Component {
         books: [],
     };
 
+    // Lifecycles
     componentDidMount() {
         this.loadBooks();
     }
@@ -23,8 +26,14 @@ class Books extends Component {
         return (
             <div>
                 <p>This is a list of books</p>
+
+                
                 {this.state.books.map(book => (
+                    <div>
+                    <ListItem>{book.title}</ListItem>
+                    <DeleteBtn className="badClass" onClick={() => this.deleteBook(book.id)} />
                     <div>{book.title}</div>
+                    </div>
                 ))}
             </div>
         );
